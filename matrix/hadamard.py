@@ -1,4 +1,4 @@
-__author__ = 'kingofspace0wzz'
+__author__ = 'kingofspacewzz'
 
 import numpy as np
 from scipy import linalg as la
