@@ -7,4 +7,6 @@ def f(n):
 
 
 if __name__ == '__main__':
-    f(3)
+    f(5)
+
+    print (python -V)
