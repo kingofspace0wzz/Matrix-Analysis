@@ -1,3 +1,5 @@
+__author__ == 'kingofspace0wzz'
+
 def f(n):
 
     if n < 5:
