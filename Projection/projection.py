@@ -13,7 +13,7 @@ from numpy.linalg import matrix_rank as rank
 
 '''
 
-
+# projection matrix
 def projection(X, Y):
 
     rankX = rank(X)
@@ -30,7 +30,7 @@ def projection(X, Y):
     if la.det(np.hstack((X, Y))) == 0:
         raise Exception('X + Y is not the direct sum of the original space')
 
-
+    # check whether each subspace is of full column/row rank
     if rankX < min(X.shape):
         raise Exception('subspace X is not of full rank')
 
@@ -50,21 +50,25 @@ def orthoProjection(X, n):
     if rank(X) < n:
         P = X.dot(la.inv(X.conjugate().T.dot(X))).dot(X.conjugate().T)
 
-        # return: orthogonal projection from O to X, orthogonal projection from O to Y(a subspace that is orthogonal to X)
+        # return: orthogonal projection onto subspace X, orthogonal projection X's orthogonal complement subspace
         return P, np.eye(P.shape[0]) - P
     else:
         raise Exception('not a subspace')
 
+# projection transformation from original space onto its subspace X along its completement Y
 def project(X, Y, a):
 
     P = projection(X, Y)
     return P.dot(a)
 
+# orthogonal projection from original onto its subspace and the orthogonal completement subspace
 def orthoProject(X, a, n, subspace = ''):
 
+    # project onto subspace X
     if subspace != '':
         P = orthoProjection(X,n)[1]
         return P.dot(a)
+    # project onto X's orthogonal completement subspace
     else:
         P = orthoProjection(X, n)[0]
         return P.dot(a)
