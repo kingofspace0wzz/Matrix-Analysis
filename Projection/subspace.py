@@ -159,6 +159,15 @@ def kernel_distance(X, Y, n):
 
     distance = np.sqrt(inner)
 
+
+# return the dimension of the intersection of two subspaces
+def subspace_intersection(X, Y, n):
+
+    U = principal_angles(X, Y, n)[1]
+    V = principal_angles(X, Y, n)[2]
+
+    return rank(np.hstack(U, V))
+
 def test():
 
     A = np.array([[1,2],
