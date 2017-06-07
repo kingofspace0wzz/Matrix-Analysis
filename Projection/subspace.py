@@ -168,6 +168,17 @@ def subspace_intersection(X, Y, n):
 
     return rank(np.hstack(U, V))
 
+# distance between A and any lower rank matrix
+def lowRank_distance(A, k):
+
+    if rank(A) >= k:
+        raise Exception('Please provide a lower rank k')
+
+    sigma = la.svdvals(A)
+    # return the k+1'th singular value
+    return sigma[k]
+
+
 def test():
 
     A = np.array([[1,2],
