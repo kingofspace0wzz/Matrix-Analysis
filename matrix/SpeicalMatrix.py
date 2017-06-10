@@ -88,6 +88,27 @@ def householder(v):
     return np.eye(np.outer(v,v.conjugate().T).shape[0]) - 2 * np.outer(v, v.T.conjugate().T)
 
 
+# Given a vector x, return a unit vector v and a scalar beta that form a householder transformation which projects x onto basis e1
+def householder_vector(x):
+
+    dimensionX  = len(x)
+    sigma = x[1:].conjugate().T.dot(x[1:])
+    v = np.vstack((1, x[1:]))
+
+    if sigma == 0:
+        beta = 0
+        return v, beta
+    else:
+        miu = np.sqrt(x[0]**2 / sigma)
+        if x[0] <= 0:
+            v[0] = x[0] - miu
+        else:
+            v[0] = - sigma / (x[0] + miu)
+        beta = 2 * v[0]**2 / (sigma + v[0]**2)
+        v = v / la.norm(v, 2)
+
+        return v, beta
+
 # a test fuction that asks whether a particular matrix is one of the special matries above
 def testIS():
 
