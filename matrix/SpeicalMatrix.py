@@ -181,6 +181,11 @@ def test():
     print('is it Unitary: ', isUnitary(H))
     print('is it hermitian: ', isHermite(H))
 
+    E = np.array([[4,6,0],
+                  [-3,-5,0],
+                  [-3,-6,1]])
+    print('E: ', E, '\n', 'Is E simple: ', isSimple(E))
+
 if __name__ == '__main__':
     testIS()
     test()
