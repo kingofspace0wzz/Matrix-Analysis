@@ -5,7 +5,7 @@ from scipy import linalg as la
 from numpy.linalg import matrix_rank as rank
 
 
-
+# ask is matrix A is a simple matrix
 def isSimple(A):
 
     # check if A is a squre matrix
