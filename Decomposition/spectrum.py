@@ -14,18 +14,12 @@ def isSimple(A):
 
     eigenValues, eigenVectors = la.eig(A)
 
-    '''
-    # an array of all distinct eigen values with their associated algebraic multiplicity
-    # keys: eigen values
-    # values: algebraic multiplicity
-    # {eigenValue: algebraicMulti}
-    dictValues = {}
-    '''
-    while (eigenValues.shape[0] != 0):
+    while eigenValues.shape[0] != 0:
 
         #dictValues.update({eigenValues[0]: 1})
 
         index = np.argwhere(abs(eigenValues - eigenValues[0]) < 0.00001)
+
         algebraicMulti = len(index)
 
         geometricMulti = eigenVectors[:, index].shape[1]
@@ -34,7 +28,7 @@ def isSimple(A):
             return False
 
         #dictValues.update({eigenValues[0]: len})
-        np.delete(eigenValues, index)
+        eigenValues = np.delete(eigenValues, index)
 
     # stack another spaces of eigenvalue and eigenvector
 
@@ -48,34 +42,39 @@ def spectrum_decomposition(A):
     if isSimple(A) != True:
         raise Exception('non-simple matrix cannot be spectrum-decomposed')
 
-
     eigenValues, eigenVectors = la.eig(A)
     invVectors = la.inv(eigenVectors)
+
+    eigenVectors_row = eigenVectors.shape[0]
+    eigenVectors_column = eigenVectors.shape[1]
+    invVectors_row = invVectors.shape[0]
+    invVectors_column = invVectors.shape[1]
+
     # an array of all distinct eigen values with their associated algebraic multiplicity
     # keys: eigen values
     # values: algebraic multiplicity
     # {eigenValue: algebraicMulti}
     dictValues = {}
 
-    while (eigenValues.shape[0] != 0):
+    while eigenValues.shape[0] != 0:
 
         index = np.argwhere(abs(eigenValues - eigenValues[0]) < 0.00001)
 
-        spectrum = eigenVectors[:, index].dot(invVectors[index, :])
+        spectrum = eigenVectors[:, index].reshape((eigenVectors_row, len(index))).dot(invVectors[index, :].reshape((len(index), invVectors_column)) )
 
         dictValues.update({eigenValues[0]: spectrum})
-        np.delete(eigenValues, index)
+        eigenValues = np.delete(eigenValues, index)
+        eigenVectors = np.delete(eigenVectors, index, 1)
+        invVectors = np.delete(invVectors, index, 0)
 
     return dictValues
-
 
 def test():
 
     A = np.array([[4,6,0],
                   [-3,-5,0],
                   [-3,-6,1]])
-
-    print(spectrum_decomposition(A))
+    print('A: ', A, '\n', "A's spectrum_decomposition: ", spectrum_decomposition(A))
 
 if __name__ == '__main__':
     test()

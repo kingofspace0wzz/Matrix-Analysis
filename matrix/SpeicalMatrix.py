@@ -73,14 +73,8 @@ def isSimple(A):
 
     eigenValues, eigenVectors = la.eig(A)
 
-    '''
-    # an array of all distinct eigen values with their associated algebraic multiplicity
-    # keys: eigen values
-    # values: algebraic multiplicity
-    # {eigenValue: algebraicMulti}
-    dictValues = {}
-    '''
-    while (eigenValues.all() != np.array([])):
+
+    while (eigenValues.shape[0] != 0):
 
         #dictValues.update({eigenValues[0]: 1})
 
@@ -93,7 +87,7 @@ def isSimple(A):
             return False
 
         #dictValues.update({eigenValues[0]: len})
-        np.delete(eigenValues, index)
+        eigenValues = np.delete(eigenValues, index)
 
     # stack another spaces of eigenvalue and eigenvector
 
@@ -184,7 +178,7 @@ def test():
     E = np.array([[4,6,0],
                   [-3,-5,0],
                   [-3,-6,1]])
-    print('E: ', E, '\n', 'Is E simple: ', isSimple(E))
+
 
 if __name__ == '__main__':
     testIS()
