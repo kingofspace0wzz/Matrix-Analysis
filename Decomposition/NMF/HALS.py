@@ -4,7 +4,7 @@ import numpy as np
 from scipy import linalg as la
 from numpy.linalg import matrix_rank as rank
 
-// solve NMF by hierarchical alternating least squares, returns the approximation matrices and the residue
+# solve NMF by hierarchical alternating least squares, returns the approximation matrices and the residue
 def HALS(A, k, epsilon = 0.00001):
 
     W = np.random.random_sample((A.shape[0], k))
@@ -73,7 +73,7 @@ def HALS(A, k, epsilon = 0.00001):
 
 
 
-// regularized HALS method, keeping the results small and sparse
+# regularized HALS method, keeping the results small and sparse
 def regularized_HALS(A, k, epsilon = 0.00001, alpha = 0.01, beta = 0.01):
 
     W = np.random.random_sample((A.shape[0], k))
