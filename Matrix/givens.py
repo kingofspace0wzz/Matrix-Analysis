@@ -25,6 +25,31 @@ def givens(x, i=0, j=1):
 
     return c, s, x
 
+# fast givens transformation
+def fast_givens(x, d):
+
+    if x[1] != 0:
+        alpha = -x[0]/x[1]
+        beta = -alpha * d[1]/d[0]
+        r = -alpha * beta
+        if r <= 1:
+            ty = 1
+            tal = d[0]
+            d[0] = (1+r) * d[1]
+            d[1] = (1+r) * tal
+        else:
+            ty = 2
+            alpha, beta, r = 1/alpha, 1/beta, 1/r
+            d[0] = (1+r) * d[0]
+            d[1] = (1+r) * d[1]
+    else:
+        ty = 2
+        alpha, beta = 0, 0
+
+    return alpha, beta, ty
+
+
+
 # apply givens rotation to matrix A
 def givens_rotation(A, c, s, i, k):
 
