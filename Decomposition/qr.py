@@ -45,6 +45,24 @@ def qr_hessenberg_givens(A):
 
     return A
 
+# QR factorization via fast givens transformation
+def qr_fast_givens(A):
+
+    m = A.shape[0]
+    n = A.shape[1]
+    d = np.ones(m)
+    for j in range(n):
+        for i in range(m-1, j, -1):
+            alpha, beta, ty = givens.fast_givens(A[i-1:i+1, j], d[i-1:i+1])
+            if ty == 1:
+                A[i-1:i+1, j:n+1] = np.array([[beta, 1],
+                                              [1, alpha]]).dot(A[i-1:i+1, j:n+1])
+            else:
+                A[i-1:i+1, j:n+1] = np.array([[1, alpha],
+                                              [beta, 1]]).dot(A[i-1:i+1, j:n+1])
+
+    return A    
+
 def qr_householder_block(A):
 
     m = A.shape[0]
