@@ -58,6 +58,18 @@ def householder_vector(x):
 
         return v, beta
 
+# blocked form householder
+def householder_block(v, beta):
+
+    Y = v[:, 0]
+    W = - beta[0] * v[:, 0]
+    for i in range(1, v.shape[1]):
+        z = - beta[i] * (np.eye(v.shape[0]) +np.dot(W.T, Y)).dot(v[:, i])
+        W = np.hstack((W, z))
+        Y = np.hstack((Y, v[:, i]))
+
+    return np.eye(v.shape[0]) + np.dot(W.T, Y), W.T, Y.T
+
 
 def test():
 
