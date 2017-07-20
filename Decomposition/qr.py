@@ -6,7 +6,7 @@ import sys
 sys.path.append('G:\\Github\\Matrix-Analysis')
 from Matrix import householder
 import Matrix.givens
-# from numpy.linalg import matrix_rank as rank
+from numpy.linalg import matrix_rank as rank
 
 # QR factorization via householder method
 def qr_householder(A):
@@ -61,7 +61,26 @@ def qr_fast_givens(A):
                 A[i-1:i+1, j:n+1] = np.array([[1, alpha],
                                               [beta, 1]]).dot(A[i-1:i+1, j:n+1])
 
-    return A    
+    return A
+
+# least square using QR (A must be full column rank)
+def qr_ls(A, b):
+
+    m = A.shape[0]
+    n = A.shape[1]
+    if rank(A) < n:
+        raise Exception('Rank deficient')
+
+    A = qr_householder(A)
+    for j in range(n):
+        v = np.hstack((1, A[j+1:, j]))
+        A[j+1:, j] = 0
+        b[j:] = (np.eye(m - j + 1) - 2 * np.outer(v, v) / la.norm(v, 2)).dot(b[j:])
+
+    x_ls = la.solve(A, b)
+
+    return x_ls
+
 
 def qr_householder_block(A):
 
