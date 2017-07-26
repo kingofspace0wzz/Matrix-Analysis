@@ -18,6 +18,8 @@ $$min \; f(W, \; H) = {\left \lVert A-WH^T \right \rVert}^2_F $$ $$subject \ to 
 
 Since this optimization problem is nonconvex, only the local minimum should be expected from any good algorithm.
 
+<img src="http://www.forkosh.com/mathtex.cgi? \Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}">
+
 ##### Algorithms
 
 * **HALS**
