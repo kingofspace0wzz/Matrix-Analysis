@@ -8,14 +8,13 @@ Nonnegative matrix factorization is a computational technique of dimensional red
 
 ##### Definition
 
-Suppose a nonnegative matrix $A \in R^{M \times N}$ is given. NMF returns the decomposed representation of $A$ with nonnegative matrix $W$ and $H$ by solving a nonconvex optimization problem defined with Frobenius norm.
+Suppose a nonnegative matrix <img src="http://chart.googleapis.com/chart?cht=tx&chl=$A \in R^{M \times N}$" style="border:none;"> is given. NMF returns the decomposed representation of $A$ with nonnegative matrix  <img src="http://chart.googleapis.com/chart?cht=tx&chl=$W$" style="border:none;"> and <img src="http://chart.googleapis.com/chart?cht=tx&chl=$H$" style="border:none;"> by solving a nonconvex optimization problem defined with Frobenius norm.
 
-<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
-
-$$min \; f(W, \; H) = {\left \lVert A-WH^T \right \rVert}^2_F $$ $$subject \ to \ W \ge 0, \ H \ge 0$$
+<img src="http://chart.googleapis.com/chart?cht=tx&chl=$$min \; f(W, \; H) = {|| A-WH^T ||}^2_F $$" style="border:none;">
+,     
+<img src="http://chart.googleapis.com/chart?cht=tx&chl=  subject \ to \ W \ge 0, \ H \ge 0" style="border:none;">
 
 Since this optimization problem is nonconvex, only the local minimum should be expected from any good algorithm.
-
 
 
 ##### Algorithms
@@ -23,4 +22,5 @@ Since this optimization problem is nonconvex, only the local minimum should be e
 * **HALS**
 
 ![](/pic/1.PNG)
+
 ![](/pic/2.PNG)
