@@ -5,11 +5,7 @@ Nonnegative matrix factorization is a computational technique of dimensional red
 
 ## Definition
 
-Suppose a nonnegative matrix $A \in R^{M \times N}$ is given. NMF returns the decomposed representation of $A$ with nonnegative matrix $W$ and $H$ by solving a nonconvex optimization problem defined with Frobenius norm.
-
-$$min \; f(W, \; H) = {\left \lVert A-WH^T \right \rVert}^2_F $$ $$subject \ to \ W \ge 0, \ H \ge 0$$
-
-Since this optimization problem is nonconvex, only the local minimum should be expected from any good algorithm.
+![](/pic/3.PNG)
 
 ## Algorithms
 
@@ -17,3 +13,11 @@ Since this optimization problem is nonconvex, only the local minimum should be e
 
 ![](/pic/1.PNG)
 ![](/pic/2.PNG)
+
+
+------------------------------------------------------------------
+### *Reference:*
+
+[1] Kim, Jingu, Y. He, and H. Park. *"Algorithms for nonnegative matrix and tensor factorizations: a unified view based on block coordinate descent framework."* Journal of Global Optimization 58.2(2014):285-319.
+
+[2] D Guillarnep, B Schiele, J Vitrial. *"The Non-negative Matrix Factorization technique"*.
