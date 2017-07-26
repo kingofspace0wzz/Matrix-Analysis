@@ -37,7 +37,10 @@ def householder_beta(v, beta):
 def householder_vector(x):
 
     sigma = x[1:].conjugate().T.dot(x[1:])
-    v = np.vstack((1.0, x[1:]))
+    if x.shape[0] == 1:
+        v = np.vstack((1.0, x[1:]))
+    else:
+        v = np.hstack((1.0, x[1:]))
 
     if sigma == 0:
         beta = 0
