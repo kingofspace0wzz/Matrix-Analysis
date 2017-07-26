@@ -79,7 +79,7 @@ def qr_ls(A, b):
 
     x_ls = la.solve(A, b)
 
-    return x_ls
+    return x_ls0
 
 
 def qr_householder_block(A):
