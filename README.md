@@ -18,3 +18,16 @@ Nonnegative matrix factorization is a computational technique of dimensional red
 ![](/pic/1.PNG)
 
 ![](/pic/2.PNG)
+
+
+
+--------------------------------
+### *Reference:*
+
+[1] GH Golub, CF Van Loan. *"Matrix Computation"*. Johns Hopkins University, 1983, 47 (5 Series II)
+
+[2] Stewart, G. W., and J. G. Sun. *"Matrix Perturbation Theory"*. Academic Press, 1990.
+
+[3] Kim, Jingu, Y. He, and H. Park. *"Algorithms for nonnegative matrix and tensor factorizations: a unified view based on block coordinate descent framework."* Journal of Global Optimization 58.2(2014):285-319.
+
+[4] D Guillarnep, B Schiele, J Vitrial. *"The Non-negative Matrix Factorization technique"*.
