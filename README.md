@@ -1,7 +1,3 @@
-<script type="text/javascript"async
- src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
 # Matrix-Analysis
 
 This is a python library for basic matrix computation and analysis, topics(those are not included in numpy or scipy) of which include but are not limited to, special matrix transformation like householder, algorithms for orthogonal projection, eigenvalue problem with spectrum decomposition, and some popular matrix factorization methods for nonnegative matrix factorization.
@@ -12,13 +8,8 @@ Nonnegative matrix factorization is a computational technique of dimensional red
 
 ##### Definition
 
-Suppose a nonnegative matrix $A \in R^{M \times N}$ is given. NMF returns the decomposed representation of $A$ with nonnegative matrix $W$ and $H$ by solving a nonconvex optimization problem defined with Frobenius norm.
+![](/pic/3.PNG)
 
-$$min \; f(W, \; H) = {\left \lVert A-WH^T \right \rVert}^2_F $$ $$subject \ to \ W \ge 0, \ H \ge 0$$
-
-Since this optimization problem is nonconvex, only the local minimum should be expected from any good algorithm.
-
-<img src="http://www.forkosh.com/mathtex.cgi? \Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}">
 
 ##### Algorithms
 
