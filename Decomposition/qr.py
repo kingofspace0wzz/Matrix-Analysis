@@ -2,8 +2,6 @@ __author__ = 'kingofspace0wzz'
 
 import numpy as np
 from scipy import linalg as la
-import sys
-sys.path.append('G:\\Github\\Matrix-Analysis')
 from Matrix import householder
 import Matrix.givens
 from numpy.linalg import matrix_rank as rank
@@ -77,9 +75,9 @@ def qr_ls(A, b):
         A[j+1:, j] = 0
         b[j:] = (np.eye(m - j + 1) - 2 * np.outer(v, v) / la.norm(v, 2)).dot(b[j:])
 
-    x_ls = la.solve(A, b)
+    x_ls = la.solve(A[:n, :n], b[:n])
 
-    return x_ls0
+    return x_ls
 
 
 def qr_householder_block(A):
