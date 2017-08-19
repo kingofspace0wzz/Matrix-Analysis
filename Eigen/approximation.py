@@ -92,7 +92,7 @@ def power_inverse(A, x, tol = 0.0001, N =5000):
 
         tol: tolerance
         N: maximum number of iterations
-        accelerate: whether to apply Aitken's acceleration method
+
     '''
 
     q = np.dot(x.T, np.dot(A, x))/np.dot(x.T, x)
@@ -115,10 +115,10 @@ def power_inverse(A, x, tol = 0.0001, N =5000):
             u = y[p]
 
             p = -1
-            u0, u1 = 0, 0
-            for i in range(A.shape[1]):
+
+            for i in range(len(y)):
                 p += 1
-                if la.norm(x, np.inf) == x[i]:
+                if la.norm(y, np.inf) == y[i]:
                     break
 
             err = la.norm(x - (y/y[p]), np.inf)
@@ -126,6 +126,59 @@ def power_inverse(A, x, tol = 0.0001, N =5000):
             if err < tol:
                 u = 1/u + q
                 return u, x
+
+
+def deflation_wielandt(A, lam, v, x, tol, N):
+    '''
+
+    '''
+    p = -1
+
+    for i in range(len(v)):
+        p += 1
+        if la.norm(v, np.inf) == v[i]:
+            break
+
+    B = np.empty((A.shape[0]-1, A.shape[0]-1))
+
+    if i != 1:
+        for k in range(i-1):
+            for j in range(i-1):
+                b[k][j] = A[k][j] - v[k]/v[i]*A[i][j]
+
+    if i != 1 and i != n:
+        for k in range(n-1):
+            for j in range(i-1):
+                b[k][j] = A[k+1][j] - v[k+1]/v[i]*A[i][j]
+                b[j][k] = A[j][k+1] - v[j]/v[i]*A[i][k+1]
+
+    if i != n:
+        for k in range(n-1):
+            for j in range(n-1):
+                b[k][j] = A[k+1][j+1] - v[k+1]/v[i]*A[i][j+1]
+
+    try:
+        u, w = power(B, x)
+    except:
+        raise Exception("method failed,")
+
+    p = np.empty((n-1, 1))
+    if i != 1:
+        for k in range(i-1):
+            p[k] = w[k]
+    p[i] = 0
+    if i != n:
+        for k in range(i, n):
+            p[k] = w[k-1]
+
+    y = np.empty((n, 1))
+
+    for k in range(n):
+        y[k] = (u-lam)*p[k] + (np.sum(A[i]*p[j])) * v[k]/v[i]
+
+    return u, y
+
+
 
 
 #------------------------------------------------
