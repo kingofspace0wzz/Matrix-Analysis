@@ -14,7 +14,9 @@ from Matrix import givens as gi
 
 # least square using QR (A must be full column rank)
 def ls_qr(A, b):
-
+    '''
+    least square using QR (A must be full column rank)
+    '''
     m = A.shape[0]
     n = A.shape[1]
     if rank(A) < n:

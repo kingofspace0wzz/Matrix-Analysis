@@ -8,7 +8,9 @@ from numpy.linalg import matrix_rank as rank
 
 # QR factorization via householder method
 def qr_householder(A):
-
+    '''
+    QR factorization via householder method
+    '''
     m = A.shape[0]
     n = A.shape[1]
     for i in range(n):
@@ -20,7 +22,9 @@ def qr_householder(A):
 
 # QR factorization via givens transformation
 def qr_givens(A):
-
+    '''
+    QR factorization via givens transformation
+    '''
     m = A.shape[0]
     n = A.shape[1]
     for j in range(n):
@@ -33,7 +37,9 @@ def qr_givens(A):
 
 # QR factorization via hessenberg method with the help of givens transformation
 def qr_hessenberg_givens(A):
-
+    '''
+    QR factorization via hessenberg method with the help of givens transformation
+    '''
     m = A.shape[0]
     n = A.shape[1]
     for j in range(n-1):
@@ -45,7 +51,9 @@ def qr_hessenberg_givens(A):
 
 # QR factorization via fast givens transformation
 def qr_fast_givens(A):
-
+    '''
+    QR factorization via fast givens transformation
+    '''
     m = A.shape[0]
     n = A.shape[1]
     d = np.ones(m)
@@ -63,7 +71,9 @@ def qr_fast_givens(A):
 
 # least square using QR (A must be full column rank)
 def qr_ls(A, b):
-
+    '''
+    least square using QR (A must be full column rank)
+    '''
     m = A.shape[0]
     n = A.shape[1]
     if rank(A) < n:
@@ -78,11 +88,3 @@ def qr_ls(A, b):
     x_ls = la.solve(A[:n, :n], b[:n])
 
     return x_ls
-
-
-def qr_householder_block(A):
-
-    m = A.shape[0]
-    n = A.shape[1]
-
-    return

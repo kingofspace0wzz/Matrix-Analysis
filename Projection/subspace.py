@@ -22,7 +22,12 @@ from numpy.linalg import matrix_rank as rank
 # @param2: Y, subspace
 # @param3: n, rank/dimension of the original space
 def subspace_distance(X, Y, n, method = 'definition'):
-
+    '''
+    compute the distance/gap between subspaces
+     @param1: X, subspace
+     @param2: Y, subspace
+     @param3: n, rank/dimension of the original space
+    '''
     # ask if two subspaces have the same dimension/rank
     if rank(X) != rank(Y):
         return 1 # the gap/distance between any pair of subspaces with different dimensions is one
@@ -49,7 +54,12 @@ def subspace_distance(X, Y, n, method = 'definition'):
 # @param2: Matrix B
 # find the orthogonal matrix Q that minimizes ||A - BQ||_2
 def rotation_measure(A, B):
-
+    '''
+    function rotationMeasure measures how close a matrix can be to another matrix by rotation
+     @param1: Matrix A
+     @param2: Matrix B
+     find the orthogonal matrix Q that minimizes ||A - BQ||_2
+    '''
     # ask if the two matrics have the same shape
     if A.shape != B.shape:
         raise Exception('Two matrics do not have the same shape')
@@ -66,7 +76,9 @@ def rotation_measure(A, B):
 
 # compute the minimal angle between subspaces
 def min_angle(X, Y, n):
-
+    '''
+    compute the minimal angle between subspaces
+    '''
     P1 = pro.orthoProjection(X, n)[0]
     P2 = pro.orthoProjection(Y, n)[0]
 
@@ -75,14 +87,19 @@ def min_angle(X, Y, n):
 
 # compute the maximal angle between subspaces with equal dimension
 def max_angle(X, Y, n):
-
+    '''
+    compute the maximal angle between subspaces with equal dimension
+    '''
     return np.arcsin(subspace_distance(X, Y, n))
 
 
 # compute the principal angles between two subspaces
 # return: np.array of principal angles, orthogonal matrics U and V
 def principal_angles(X, Y, n):
-
+    '''
+    compute the principal angles between two subspaces
+    return: np.array of principal angles, orthogonal matrics U and V
+    '''
     QX, RX = la.qr(X)
     QY, RY = la.qr(Y)
 
@@ -112,14 +129,18 @@ def principal_angles(X, Y, n):
 
 # Similarity between subspaces by Yamaguchi's definition
 def similarity_Yama(X, Y, n):
-
+    '''
+    Similarity between subspaces by Yamaguchi's definition
+    '''
     angles = principal_angles(X, Y, n)[0]
 
     return np.min(angles)
 
 # Similarity between subspaces by Wolf & Shashua's definition
 def similarity_Wolf(X, Y, n):
-
+    '''
+    Similarity between subspaces by Wolf & Shashua's definition
+    '''
     cos = np.cos(principal_angles(X, Y, n)[0])
 
     similarity = 1
@@ -131,7 +152,9 @@ def similarity_Wolf(X, Y, n):
 
 # distace between subspaces by Hausdorff's definition
 def hausdorff_distance(X, Y, n):
-
+    '''
+    distace between subspaces by Hausdorff's definition
+    '''
     if rank(X) != X.shape[1] & rank(Y) != Y.shape[1]:
         raise Exception('Please provide subspaces with full COLUMN rank')
 
@@ -147,7 +170,9 @@ def hausdorff_distance(X, Y, n):
 
 # distance with inner-product
 def kernel_distance(X, Y, n):
-
+    '''
+    distance with inner-product
+    '''
     if rank(X) != X.shape[1] & rank(Y) != Y.shape[1]:
         raise Exception('Please provide subspaces with full COLUMN rank')
 
@@ -162,7 +187,9 @@ def kernel_distance(X, Y, n):
 
 # return the dimension of the intersection of two subspaces
 def subspace_intersection(X, Y, n):
-
+    '''
+    return the dimension of the intersection of two subspaces
+    '''
     U = principal_angles(X, Y, n)[1]
     V = principal_angles(X, Y, n)[2]
 
@@ -170,7 +197,9 @@ def subspace_intersection(X, Y, n):
 
 # distance between A and any lower rank matrix
 def lowRank_distance(A, k):
-
+    '''
+    distance between A and any lower rank matrix
+    '''
     if rank(A) >= k:
         raise Exception('Please provide a lower rank k')
 

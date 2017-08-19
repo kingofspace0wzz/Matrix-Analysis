@@ -6,7 +6,10 @@ from scipy import linalg as la
 # a function that verifies Schur inequality
 # test whether the sum of all square eigenValue is less than or equal to Frobenius norm of the matrix
 def verSchur(A):
-
+    '''
+    a function that verifies Schur inequality
+    test whether the sum of all square eigenValue is less than or equal to Frobenius norm of the matrix
+    '''
     # initialize eigenValue
     eigenValue = la.eig(A)[0]
 
@@ -18,7 +21,9 @@ def verSchur(A):
 # approximation of the upper bound of the absolute value of each eigenValue
 
 def upperBound(A, part = ''):
-
+    '''
+    approximation of the upper bound of the absolute value of each eigenValue
+    '''
     # return the approximate upper bound for the real part of all eigenValue
     if part == 'real':
         B = 1/2 * (A + A.conjugate().T)

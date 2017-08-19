@@ -5,6 +5,9 @@ from scipy import linalg as la
 
 # calculate the radius of Gerschorin circle
 def Gradius(A):
+    '''
+    calculate the radius of Gerschorin circle
+    '''
     R = np.empty(A.shape[0])
     for i in range(0, A.shape[0]):
         R[i] = np.sum(abs(A[i]))-abs(A[i,i])
@@ -13,18 +16,8 @@ def Gradius(A):
 
 # return a graph that shows how many connection parts consisting of Gerschorin circle A has
 def Gconnection(A):
-
     '''
-    # an array matrix that stores the distance among the central of each Gerschorin
-
-    distance = np.zeros_like(A)
-    for i in range(0, A.shape[0]):
-        for j in range(i, A.shape[0]):
-
-            if i != j:
-                distance[i][j] = np.sqrt(np.squre(abs(A[i,i].real) - abs(A[j,j].real))
-                                        + np.square(abs(A[i,i].imag - abs(A[j,j].imag))))
-                distance[j][i] = distance[i][j]
+    return a graph that shows how many connection parts consisting of Gerschorin circle A has
     '''
 
     R = Gradius(A)

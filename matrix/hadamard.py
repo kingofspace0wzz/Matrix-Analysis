@@ -12,7 +12,9 @@ from scipy import linalg as la
 
 # initialize a hadamard matrix by Sylvester's construction
 def hadamard(n, method = 'Sylvester'):
-
+    '''
+    initialize a hadamard matrix by Sylvester's construction
+    '''
 
     if method == 'Sylvester':
         H2 = np.array([[1,1],[1,-1]])

@@ -7,7 +7,9 @@ from numpy.linalg import matrix_rank as rank
 
 # return full-rank decomposition of X = FG^T
 def fullrank(X):
-
+    '''
+    return full-rank decomposition of X = FG^T
+    '''
     rankX = rank(X)
 
     U, eigvals, Vh = la.svd(X)

@@ -6,7 +6,9 @@ from scipy import linalg as la
 
 # return a scaled matrix of A
 def scaleMatrix(A, scale = [1,1]):
-
+    '''
+    return a scaled matrix of A
+    '''
     sm = int(A.shape[0] / scale[0])
     sn = int(A.shape[1] / scale[1])
 
@@ -25,14 +27,16 @@ def scaleMatrix(A, scale = [1,1]):
 
 # rotate matrix by 180 degrees
 def rot180(A):
-
-
-
+    '''
+    rotate matrix by 180 degrees
+    '''
     return rot90(rot90(A))
 
 # rotate matrix by 90 degrees
 def rot90(A):
-
+    '''
+    rotate matrix by 90 degrees
+    '''
 
     m = A.shape[0]
     n = A.shape[1]
@@ -48,12 +52,16 @@ def rot90(A):
 
 # rotation, counterclock
 def Crot90(A):
-
+    '''
+    rotation, counterclock
+    '''
     return rot90(rot180(A))
 
 # return the Full convolution between Matrix A and the kernel
 def conFull(A, kernel):
-
+    '''
+    return the Full convolution between Matrix A and the kernel
+    '''
     kernel = rot180(kernel)
 
     if len(A.shape) != len(kernel.shape):
@@ -94,7 +102,9 @@ def conFull(A, kernel):
 
 # return the valid convolution between Matrix A and the kernel
 def conValid(A, kernel):
-
+    '''
+    return the valid convolution between Matrix A and the kernel
+    '''
     kernel = rot180(kernel)
 
     if len(A.shape) != len(kernel.shape):

@@ -5,7 +5,9 @@ from scipy import linalg as la
 
 # Givens rotation of rank 2
 def givens(x, i=0, j=1):
-
+    '''
+    Givens rotation of rank 2
+    '''
     if x[j] == 0:
         c, s = 1, 0
     else:
@@ -27,7 +29,9 @@ def givens(x, i=0, j=1):
 
 # fast givens transformation
 def fast_givens(x, d):
-
+    '''
+    fast givens transformation
+    '''
     if x[1] != 0:
         alpha = -x[0]/x[1]
         beta = -alpha * d[1]/d[0]
@@ -52,7 +56,9 @@ def fast_givens(x, d):
 
 # apply givens rotation to matrix A
 def givens_rotation(A, c, s, i, k):
-
+    '''
+    apply givens rotation to matrix A
+    '''
     for j in range(A.shape[0]):
         t1 = A[j, i]
         t2 = A[j, k]

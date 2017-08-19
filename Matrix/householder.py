@@ -35,7 +35,9 @@ def householder_beta(v, beta):
 
 # Given a vector x, return a unit vector v and a scalar beta that form a householder transformation which projects x onto basis e1
 def householder_vector(x):
-
+    '''
+    Given a vector x, return a unit vector v and a scalar beta that form a householder transformation which projects x onto basis e1
+    '''
     sigma = x[1:].conjugate().T.dot(x[1:])
     if x.shape[0] == 1:
         v = np.vstack((1.0, x[1:]))
@@ -63,7 +65,9 @@ def householder_vector(x):
 
 # blocked form householder
 def householder_block(v, beta):
-
+    '''
+     blocked form householder
+    '''
     Y = v[:, 0]
     W = - beta[0] * v[:, 0]
     for i in range(1, v.shape[1]):

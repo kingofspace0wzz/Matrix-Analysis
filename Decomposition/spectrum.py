@@ -7,7 +7,9 @@ from numpy.linalg import matrix_rank as rank
 
 # ask is matrix A is a simple matrix
 def isSimple(A):
-
+    '''
+    ask is matrix A is a simple matrix
+    '''
     # check if A is a squre matrix
     if A.shape[1] != A.shape[0]:
         return False
@@ -37,7 +39,9 @@ def isSimple(A):
 
 # compute the spectrum decomposition of matrix A
 def spectrum_decomposition(A):
-
+    '''
+    compute the spectrum decomposition of matrix A
+    '''
     # check if A is a simple matrix
     if isSimple(A) != True:
         raise Exception('non-simple matrix cannot be spectrum-decomposed')

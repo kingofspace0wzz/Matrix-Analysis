@@ -7,7 +7,10 @@ from numpy.linalg import matrix_rank as rank
 # solve NMF by hierarchical alternating least squares, returns the approximation matrices and the residue
 # alpha keeps W from becoming too big, beta keeps H sparse
 def HALS(A, k, epsilon = 0.01, alpha = 0.0, beta = 0.01):
-
+    '''
+    solve NMF by hierarchical alternating least squares, returns the approximation matrices and the residue
+    alpha keeps W from becoming too big, beta keeps H sparse
+    '''
     W = np.random.random_sample((A.shape[0], k))
     H = np.random.random_sample((A.shape[1], k))
 
