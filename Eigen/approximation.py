@@ -128,9 +128,11 @@ def power_inverse(A, x, tol = 0.0001, N =5000):
                 return u, x
 
 
-def deflation_wielandt(A, lam, v, x, tol, N):
+def deflation_wielandt(A, lam, v, x, tol = 0.0001, N = 1000):
     '''
-
+    To approximate the second most dominant eigenvalue and an associated eigenvector of the matrix A given an
+    approximation lambda to the dominant eigenvalue, an approximation v to a corresponding eigenvector, and a
+    vector x of R^(n-1)
     '''
     p = -1
 
