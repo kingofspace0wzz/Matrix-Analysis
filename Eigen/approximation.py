@@ -146,18 +146,18 @@ def deflation_wielandt(A, lam, v, x, tol = 0.0001, N = 1000):
     if i != 1:
         for k in range(i-1):
             for j in range(i-1):
-                b[k][j] = A[k][j] - v[k]/v[i]*A[i][j]
+                b[k, j] = A[k, j] - v[k]/v[i]*A[i, j]
 
     if i != 1 and i != n:
         for k in range(n-1):
             for j in range(i-1):
-                b[k][j] = A[k+1][j] - v[k+1]/v[i]*A[i][j]
-                b[j][k] = A[j][k+1] - v[j]/v[i]*A[i][k+1]
+                b[k, j] = A[k+1, j] - v[k+1]/v[i]*A[i, j]
+                b[j, k] = A[j, k+1] - v[j]/v[i]*A[i, k+1]
 
     if i != n:
         for k in range(n-1):
             for j in range(n-1):
-                b[k][j] = A[k+1][j+1] - v[k+1]/v[i]*A[i][j+1]
+                b[k, j] = A[k+1, j+1] - v[k+1]/v[i]*A[i, j+1]
 
     try:
         u, w = power(B, x)
